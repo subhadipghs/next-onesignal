@@ -2,13 +2,12 @@ import styles from "../styles/home.module.css";
 
 export default function Home() {
   const subscribe = () => {
-    const ID = "500202202284802fasd40fj8f-faschange";
+    const ID = "someuser_id";
     if (window) {
       console.log("Running on browser");
       OneSignal.push(() => {
-        console.log("SETTING");
+        console.log(ID);
         OneSignal.setExternalUserId(ID);
-        console.log("SETTING DONE");
       });
     }
   };
@@ -16,7 +15,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <button className={styles.button} onClick={subscribe}>
-        One Signal 🔔
+        Say yes to Onesignal
       </button>
     </div>
   );

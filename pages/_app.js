@@ -1,23 +1,15 @@
-import { useEffect } from "react";
+import useOneSignal from '../hooks/useOneSignal';
 import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      console.log(window.OneSignal);
-      window.OneSignal = window.OneSignal || [];
-      OneSignal.push(function () {
-        OneSignal.init({
-          appId: "6b0c8149-5d5a-4098-bd66-8128506a9321",
-          notifyButton: {
-            enable: true,
-          },
-          allowLocalhostAsSecureOrigin: true,
-        });
-      });
-    }
-  }, []);
 
+function MyApp({ Component, pageProps }) {
+
+  console.log(process.env.NEXT_PUBLIC_ONESIGNAL_APPID)
+  useOneSignal({
+    appId: process.env.NEXT_PUBLIC_ONESIGNAL_APPID,
+    notifyEnable: true,
+    allowLocalhostAsSecureOrigin: true
+  })
   return <Component {...pageProps} />;
 }
 
